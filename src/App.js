@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Table from './Components/Table/Table'
+
+class App extends React.Component
+{
+  state = {
+    stateData: []
+  }
+  componentDidMount(){
+    fetch("https://www.mohfw.gov.in/data/datanew.json")
+      .then(response => response.json())
+      .then(states => this.setState({stateData: states}));
+  }
+
+  render(){
+    return (
+      <div className="App">
+        {
+          (this.state.stateData.length) ?
+            <Table states={this.state.stateData} /> : null
+        }
+      </div>
+    );
+  }  
 }
 
 export default App;
