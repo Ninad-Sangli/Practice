@@ -19,7 +19,7 @@ class App extends React.Component
       <div className="App">
         {
           (this.state.stateData.length) ?
-            <Table states={this.state.stateData} /> : null
+            <Table states={this.state.stateData} rowKey={"state_name"}/> : null
         }
       </div>
     );

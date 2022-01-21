@@ -5,7 +5,7 @@ class Table extends React.Component{
     constructor(props){
         super(props);
         this.stateList = props.states;
-        this.setTableNode = props.setTableNode;
+        this.rowKey = props.rowKey;
         this.tableRef = React.createRef();
     }
 
@@ -43,7 +43,8 @@ class Table extends React.Component{
                             states.map(state => <Row 
                                                     header={tableHeader}
                                                     state={Object.values(state)}
-                                                    key={state.state_name} />)
+                                                    rowKey={this.rowKey}
+                                                    key={state[this.rowKey]} />)
                         }
                     </tbody>
                     <tfoot>
