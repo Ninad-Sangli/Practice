@@ -45,7 +45,7 @@ const Table = ({ states }) => {
                         <tr {...row.GetRowProps} key={Math.random()}>
                             {
                                 row.cells.map(cell => (
-                                    <td {...cell.getCellProps()}>
+                                    <td {...cell.getCellProps()} key={Math.random()}>
                                         {cell.render('Cell')}
                                     </td>
                                 ))

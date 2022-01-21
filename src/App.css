@@ -1,3 +1,21 @@
+
 .table-container{
-    width: 70%;
+    margin: 2vh 0 0 2vh;
+    padding: 0; 
+    flex: 0.7;
+    height: 96vh;
+    overflow: auto;
 }
+
+.flex-container {
+    display: flex;
+    height: 100%;
+} 
+
+.stats-container{
+    flex: 0.3;
+}
+
+.flex-child:first-child {
+    margin-right: 40px;
+} 
