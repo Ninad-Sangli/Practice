@@ -1,37 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Stats from './Components/Stats/Stats';
 import Table from "./Components/Table/Table"
 
 
-class App extends Component {
-  state = {
-    stateData: []
-  }
-  componentDidMount(){
+const App = () => {
+  const [stateData, setStateData] = React.useState([]);
+
+  React.useEffect(() => {
+    console.log("API CALL");
     fetch("https://www.mohfw.gov.in/data/datanew.json")
       .then(response => response.json())
-      .then(states => this.setState({stateData: states.filter(state => state.state_name)}));    
-  }
+      .then(states => setStateData(states.filter(state => state.state_name)));    
+  },[]); 
 
-  render(){
-    return (
-      <div className="App">
-        <div className="flex-container">
-          <div className="flex-child table-container">
-            {(this.state.stateData.length) ?
-              <Table states={this.state.stateData} rowKey={"state_name"}/> : null}
-          </div>
-          <div className="flex-child stats-container">
-            <div className="stats">
-            {(this.state.stateData.length) ?
-              <Stats states={this.state.stateData}/> : null}
-            </div>
+  return (
+    <div className="App">
+      <div className="flex-container">
+        <div className="flex-child table-container">
+          {(stateData.length) && <Table states={stateData} rowKey={"state_name"}/>}
+        </div>
+        <div className="flex-child stats-container">
+          <div className="stats">
+          {(stateData.length) && <Stats states={stateData}/>}
           </div>
         </div>
       </div>
-    );
-  }  
+    </div>
+  );
+   
 }
  
 export default App;
